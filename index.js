@@ -3,21 +3,17 @@ var app = express()
 const widgets = require('./queries/widgets');
 const bodyParser = require('body-parser')
 const logger = require('morgan');
-
+const widgetRouter = require('./routers/widgets')
 // middleware
 app.use(logger("dev"))
 app.use(bodyParser.urlencoded({ extended: true }));
 // app.use(bodyParser.json());
-
+app.use("/api/widgets", widgetRouter)
 // calls
 app.get("/", (req, res) =>{
-    res.send("<b>'LOL'</b>")
+    res.send("<h1>Successfully connected</h1><br><p>You were able to successfully connect to the server</p>")
 })
-app.post('/api/widgets', widgets.create)
-app.get('/api/widgets', widgets.retrieve)
-app.get('/api/widgets/:id', widgets.retrieve)
-app.put('/api/widgets/:id', widgets.update)
-app.delete('/api/widgets/:id', widgets.remove);
+
 
 // start
 const port = 3001
