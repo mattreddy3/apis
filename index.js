@@ -8,12 +8,13 @@ const widgetRouter = require('./routers/widgets')
 app.use(logger("dev"))
 app.use(bodyParser.urlencoded({ extended: true }));
 // app.use(bodyParser.json());
-app.use("/api/widgets", widgetRouter)
-// calls
+// Connection established response
 app.get("/", (req, res) =>{
     res.send("<h1>Successfully connected</h1><br><p>You were able to successfully connect to the server</p>")
 })
 
+// Router for widgets - refactor "api" portion somehow?
+app.use("/api/widgets", widgetRouter)
 
 // start
 const port = 3001
